@@ -55,7 +55,13 @@ Invoke-RestMethod `
   -Body '{"tokens":[9419,494]}'
 ```
 
-The service returns JSON containing one result per input token. It binds to `127.0.0.1` by default and processes requests sequentially.
+The service returns JSON containing one result per input token. It binds to `127.0.0.1` by default, processes requests sequentially, resets decoder state for each request, and enforces a 4096-token context limit.
+
+Reset decoder state explicitly:
+
+```powershell
+Invoke-RestMethod -Uri http://127.0.0.1:8090/v1/reset -Method Post
+```
 
 ### OpenAI-style chat route
 

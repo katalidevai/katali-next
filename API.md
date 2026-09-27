@@ -70,7 +70,14 @@ Generation response:
 {"results":[{"input":9419,"next":40719,"position":0,"ms":2658.58,"tok_s":0.376141},{"input":494,"next":79506,"position":1,"ms":2561.22,"tok_s":0.390439}]}
 ```
 
-The server is intentionally local-only and binds to `127.0.0.1`. It keeps sequence state in the running process, so send tokens for one conversation to the same process in order.
+The server is intentionally local-only and binds to `127.0.0.1`. Each request is an independent sequence; send the full prompt token sequence on every request. The server enforces a 4096-token combined prompt and generation limit.
+
+Reset decoder state:
+
+```http
+POST /v1/reset HTTP/1.1
+Host: 127.0.0.1:8090
+```
 
 ## OpenAI-style chat endpoint
 
