@@ -36,20 +36,20 @@ The release also includes `katali-next-server.exe`, a local HTTP service for app
 Start it on the loopback interface:
 
 ```powershell
-.\katali-next-server.exe C:\models\katali-next-qwen35-122b-a10b 8080
+.\katali-next-server.exe C:\models\katali-next-qwen35-122b-a10b 8090
 ```
 
 Check the service:
 
 ```powershell
-Invoke-RestMethod http://127.0.0.1:8080/health
+Invoke-RestMethod http://127.0.0.1:8090/health
 ```
 
 Generate from token IDs:
 
 ```powershell
 Invoke-RestMethod `
-  -Uri http://127.0.0.1:8080/generate `
+  -Uri http://127.0.0.1:8090/generate `
   -Method Post `
   -ContentType 'application/json' `
   -Body '{"tokens":[9419,494]}'

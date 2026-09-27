@@ -38,14 +38,14 @@ $result | ForEach-Object { $_ }
 Start the local server:
 
 ```powershell
-.\katali-next-server.exe C:\models\katali-next-qwen35-122b-a10b 8080
+.\katali-next-server.exe C:\models\katali-next-qwen35-122b-a10b 8090
 ```
 
 Health check:
 
 ```http
 GET /health HTTP/1.1
-Host: 127.0.0.1:8080
+Host: 127.0.0.1:8090
 ```
 
 Response:
@@ -58,7 +58,7 @@ Generation request:
 
 ```http
 POST /generate HTTP/1.1
-Host: 127.0.0.1:8080
+Host: 127.0.0.1:8090
 Content-Type: application/json
 
 {"tokens":[9419,494]}
