@@ -72,6 +72,16 @@ Generation response:
 
 The server is intentionally local-only and binds to `127.0.0.1`. It keeps sequence state in the running process, so send tokens for one conversation to the same process in order.
 
+## Desktop GUI
+
+Launch the native Windows application:
+
+```powershell
+.\katali-next-gui.exe
+```
+
+Enter the model directory, enter token IDs separated by spaces, and select **Generate**. The output panel shows each predicted token and its measured timing.
+
 ## C# process integration
 
 ```csharp

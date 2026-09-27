@@ -57,6 +57,16 @@ Invoke-RestMethod `
 
 The service returns JSON containing one result per input token. It binds to `127.0.0.1` by default and processes requests sequentially.
 
+## Desktop GUI
+
+`katali-next-gui.exe` provides a native Windows interface with fields for the model directory and token IDs, plus a Generate button and result panel.
+
+```powershell
+.\katali-next-gui.exe
+```
+
+Enter token IDs separated by spaces, then select **Generate**. The GUI preserves the sequence order and displays the predicted token IDs and timing for each step.
+
 Use the tokenizer files included with the model package to convert user text into token IDs. To turn generated token IDs back into text, decode them with the same tokenizer.
 
 ## Integrating from another application
