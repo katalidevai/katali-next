@@ -18,6 +18,7 @@ The model package contains the model shards and tokenizer metadata. Keep the mod
 - A CPU with AVX2 support is recommended
 - System RAM and free disk space sufficient for the selected model
 - The model directory must remain complete; do not rename or remove shard files
+- For the desktop prompt box: Python 3 with the `tokenizers` package installed
 
 ## Command-line API
 
@@ -79,17 +80,23 @@ The response follows the chat-completion shape and includes generated IDs in `ch
 
 ## Desktop GUI
 
-`katali-next-gui.exe` provides a native Windows interface with fields for the model directory, runtime selection, and token IDs, plus a Generate button and result panel. Place `katali-next-coder.exe` beside the GUI to enable the Qwen2.5-Coder 14B runtime option.
+`katali-next-gui.exe` provides a native Windows interface with fields for the model directory, a normal question/code prompt, runtime selection, and optional token IDs, plus a Generate button and result panel. Place `katali-next-coder.exe` beside the GUI to enable the Qwen2.5-Coder 14B runtime option.
 
 ```powershell
 .\katali-next-gui.exe
 ```
 
-Enter token IDs separated by spaces, then select **Generate**. The GUI preserves the sequence order and displays the predicted token IDs and timing for each step.
+Enter a question or code request in the **Prompt** box, then select **Generate**. The GUI reads `tokenizer.json` from the selected model directory, converts the prompt to token IDs, and sends those IDs to the native runtime. The **TOKEN IDS / ADVANCED** box remains available when you want to provide IDs manually; if both are filled, the prompt takes precedence.
+
+Install the prompt tokenizer dependency once if needed:
+
+```powershell
+py -m pip install tokenizers
+```
 
 For the coder runtime, set the model directory to `C:\models\qwen25-coder-14b-native`, select **Qwen2.5-Coder 14B**, and keep `katali-next-coder.exe` in the same folder as the GUI executable. The coder runtime loads its converted weights into system RAM once at startup and then reuses them for generation. On the reference i5-10400 system, warm throughput is approximately 3 tok/sec.
 
-Use the tokenizer files included with the model package to convert user text into token IDs. To turn generated token IDs back into text, decode them with the same tokenizer.
+The GUI currently displays generated token IDs and timing rather than decoded text. Use the tokenizer files included with the model package to decode generated IDs back into text when integrating the runtime into another application.
 
 ## Integrating from another application
 

@@ -108,7 +108,7 @@ Launch the native Windows application:
 .\katali-next-gui.exe
 ```
 
-Enter the model directory, enter token IDs separated by spaces, and select **Generate**. The output panel shows each predicted token and its measured timing.
+Enter a normal question or code request in the GUI's **Prompt** field and select **Generate**. The GUI uses the selected model's `tokenizer.json` to convert that text into token IDs before calling the native runtime. The **TOKEN IDS / ADVANCED** field remains available for manual token-level tests. Python 3 and the `tokenizers` package are required for prompt encoding.
 
 The GUI runtime selector supports the Qwen2.5-Coder 14B adapter when `katali-next-coder.exe` is placed beside `katali-next-gui.exe`. The coder process caches its weights in system RAM during startup.
 
