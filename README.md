@@ -87,7 +87,7 @@ The response follows the chat-completion shape and includes generated IDs in `ch
 
 Enter token IDs separated by spaces, then select **Generate**. The GUI preserves the sequence order and displays the predicted token IDs and timing for each step.
 
-For the coder runtime, set the model directory to `C:\models\qwen25-coder-14b-native`, select **Qwen2.5-Coder 14B**, and keep `katali-next-coder.exe` in the same folder as the GUI executable.
+For the coder runtime, set the model directory to `C:\models\qwen25-coder-14b-native`, select **Qwen2.5-Coder 14B**, and keep `katali-next-coder.exe` in the same folder as the GUI executable. The coder runtime loads its converted weights into system RAM once at startup and then reuses them for generation.
 
 Use the tokenizer files included with the model package to convert user text into token IDs. To turn generated token IDs back into text, decode them with the same tokenizer.
 
