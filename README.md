@@ -57,6 +57,20 @@ Invoke-RestMethod `
 
 The service returns JSON containing one result per input token. It binds to `127.0.0.1` by default and processes requests sequentially.
 
+### OpenAI-style chat route
+
+The server also provides `GET /v1/models` and `POST /v1/chat/completions`. Because the native release does not bundle a text tokenizer, send prompt token IDs using `token_ids`, `input_ids`, or `tokens`:
+
+```powershell
+Invoke-RestMethod `
+  -Uri http://127.0.0.1:8090/v1/chat/completions `
+  -Method Post `
+  -ContentType 'application/json' `
+  -Body '{"model":"katali-next","token_ids":[9419,494],"max_tokens":4}'
+```
+
+The response follows the chat-completion shape and includes generated IDs in `choices[0].message.x_token_ids`. Decode those IDs with the tokenizer shipped with the model package.
+
 ## Desktop GUI
 
 `katali-next-gui.exe` provides a native Windows interface with fields for the model directory and token IDs, plus a Generate button and result panel.

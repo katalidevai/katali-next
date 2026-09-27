@@ -72,6 +72,27 @@ Generation response:
 
 The server is intentionally local-only and binds to `127.0.0.1`. It keeps sequence state in the running process, so send tokens for one conversation to the same process in order.
 
+## OpenAI-style chat endpoint
+
+Model listing:
+
+```http
+GET /v1/models HTTP/1.1
+Host: 127.0.0.1:8090
+```
+
+Chat completion request using token IDs:
+
+```http
+POST /v1/chat/completions HTTP/1.1
+Host: 127.0.0.1:8090
+Content-Type: application/json
+
+{"model":"katali-next","token_ids":[9419,494],"max_tokens":4}
+```
+
+The response contains generated IDs in `choices[0].message.x_token_ids` and standard usage counts. The `content` field is empty because text decoding is left to the client tokenizer.
+
 ## Desktop GUI
 
 Launch the native Windows application:
