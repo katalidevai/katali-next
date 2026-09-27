@@ -29,6 +29,34 @@ The runtime accepts token IDs and returns the next predicted token ID. This keep
 
 Each supplied token is processed in order. The output reports the input token, predicted next token, position, elapsed time, and measured tokens per second.
 
+## Local HTTP API
+
+The release also includes `katali-next-server.exe`, a local HTTP service for applications that prefer a web API.
+
+Start it on the loopback interface:
+
+```powershell
+.\katali-next-server.exe C:\models\katali-next-qwen35-122b-a10b 8080
+```
+
+Check the service:
+
+```powershell
+Invoke-RestMethod http://127.0.0.1:8080/health
+```
+
+Generate from token IDs:
+
+```powershell
+Invoke-RestMethod `
+  -Uri http://127.0.0.1:8080/generate `
+  -Method Post `
+  -ContentType 'application/json' `
+  -Body '{"tokens":[9419,494]}'
+```
+
+The service returns JSON containing one result per input token. It binds to `127.0.0.1` by default and processes requests sequentially.
+
 Use the tokenizer files included with the model package to convert user text into token IDs. To turn generated token IDs back into text, decode them with the same tokenizer.
 
 ## Integrating from another application

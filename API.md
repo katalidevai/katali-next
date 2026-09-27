@@ -33,6 +33,45 @@ $result = & .\katali-next.exe $model @tokens
 $result | ForEach-Object { $_ }
 ```
 
+## HTTP API
+
+Start the local server:
+
+```powershell
+.\katali-next-server.exe C:\models\katali-next-qwen35-122b-a10b 8080
+```
+
+Health check:
+
+```http
+GET /health HTTP/1.1
+Host: 127.0.0.1:8080
+```
+
+Response:
+
+```json
+{"status":"ok"}
+```
+
+Generation request:
+
+```http
+POST /generate HTTP/1.1
+Host: 127.0.0.1:8080
+Content-Type: application/json
+
+{"tokens":[9419,494]}
+```
+
+Generation response:
+
+```json
+{"results":[{"input":9419,"next":40719,"position":0,"ms":2658.58,"tok_s":0.376141},{"input":494,"next":79506,"position":1,"ms":2561.22,"tok_s":0.390439}]}
+```
+
+The server is intentionally local-only and binds to `127.0.0.1`. It keeps sequence state in the running process, so send tokens for one conversation to the same process in order.
+
 ## C# process integration
 
 ```csharp
