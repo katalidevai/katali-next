@@ -110,6 +110,8 @@ Launch the native Windows application:
 
 Enter the model directory, enter token IDs separated by spaces, and select **Generate**. The output panel shows each predicted token and its measured timing.
 
+The GUI runtime selector supports the Qwen2.5-Coder 14B adapter when `katali-next-coder.exe` is placed beside `katali-next-gui.exe`.
+
 ## C# process integration
 
 ```csharp

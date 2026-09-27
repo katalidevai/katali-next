@@ -79,13 +79,15 @@ The response follows the chat-completion shape and includes generated IDs in `ch
 
 ## Desktop GUI
 
-`katali-next-gui.exe` provides a native Windows interface with fields for the model directory and token IDs, plus a Generate button and result panel.
+`katali-next-gui.exe` provides a native Windows interface with fields for the model directory, runtime selection, and token IDs, plus a Generate button and result panel. Place `katali-next-coder.exe` beside the GUI to enable the Qwen2.5-Coder 14B runtime option.
 
 ```powershell
 .\katali-next-gui.exe
 ```
 
 Enter token IDs separated by spaces, then select **Generate**. The GUI preserves the sequence order and displays the predicted token IDs and timing for each step.
+
+For the coder runtime, set the model directory to `C:\models\qwen25-coder-14b-native`, select **Qwen2.5-Coder 14B**, and keep `katali-next-coder.exe` in the same folder as the GUI executable.
 
 Use the tokenizer files included with the model package to convert user text into token IDs. To turn generated token IDs back into text, decode them with the same tokenizer.
 
